@@ -1,9 +1,19 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import Axios from 'axios';
 
-
-export default function ImageInfo({data}) {
+export default function ImageInfo() {
 
     const [show,setShow] = useState(true)
+    const [data,setData] = useState([]);
+
+    useEffect(()=>
+    {
+        Axios.get("http://localhost:5000/user").then((res)=>
+        {
+            console.log(res.data);
+            setData(res.data);
+        })
+    },[])
 
     if(show)
     {
